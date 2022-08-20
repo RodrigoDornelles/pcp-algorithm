@@ -3,7 +3,6 @@
 #include "../libary/math.c"
 #include "../libary/files.c"
 #include "../libary/types.c"
-#include "../libary/memory.c"
 
 static const char txt_title[34] =
     "repeat the 9-digit prime numbers.\n"
