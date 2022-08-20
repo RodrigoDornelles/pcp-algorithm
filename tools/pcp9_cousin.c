@@ -9,7 +9,7 @@ static const char txt_title[34] =
     "repeat the 9-digit prime numbers.\n"
 ;
 
-int main(u8 argc, s* argv)
+int main(int argc, char** argv)
 {
     u32 number;
     u8 buffer[10] = "";

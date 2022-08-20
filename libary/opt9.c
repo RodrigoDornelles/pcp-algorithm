@@ -31,7 +31,7 @@ b has_opt9_get(u8 argc, s* argv, i8 key)
     return false;
 }
 
-u8 fn_opt9_get(u8 argc, s* argv, i8 key, i8 value, u8 flags)
+u8 fn_opt9_get(u8 argc, s* argv, i8 key, i8 value, u16 flags)
 {
     u8 i = 0;
     

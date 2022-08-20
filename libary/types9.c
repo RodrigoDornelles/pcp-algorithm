@@ -7,6 +7,8 @@ typedef unsigned int u32;
 
 typedef signed int i32;
 
+typedef unsigned short u16;
+
 typedef unsigned char u8;
 
 typedef signed char i8;

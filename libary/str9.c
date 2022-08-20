@@ -60,7 +60,7 @@ i8 str9_stack(char* txt, i8 new_char)
     return old_char;
 }
 
-b str9_palindrome(const char* txt)
+b str9_palindrome(char* txt)
 {
     return (
         (txt[0] == txt[8]) &&
@@ -79,6 +79,7 @@ i32 str9_cast(char* txt, i32 value)
         value = (value / 10);
     }
     while(i);
+    return value;
 }
 
 #endif

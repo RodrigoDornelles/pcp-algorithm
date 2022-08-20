@@ -21,7 +21,7 @@ static const char txt_help[] =
 static const char txt_search[11] = "the search ";
 static const char txt_at_pos[8] = "at pos: ";
 
-int main(u8 argc, s* argv)
+int main(int argc, char** argv)
 {
     i8 c;
     u32 pos = 0;
