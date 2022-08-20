@@ -1,6 +1,8 @@
 #ifndef TYPES_H
 #define TYPES_H
 
+typedef char* s;
+
 typedef unsigned int u32;
 
 typedef signed int i32;

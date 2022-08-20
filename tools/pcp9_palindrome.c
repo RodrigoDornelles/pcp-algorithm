@@ -9,7 +9,7 @@ static const char txt_title[37] =
     "repeat the 9-character palindromes.\n"
 ;
 
-int main(u8 argc, i8** argv)
+int main(u8 argc, s* argv)
 {
     b number;
     u8 buffer[10] = "";

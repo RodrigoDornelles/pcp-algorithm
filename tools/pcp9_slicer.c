@@ -21,7 +21,7 @@ static const char txt_fn_errorh[] = "the header ";
 static const char txt_fn_errorg[] = "is greater than the ";
 static const char txt_trash[] = "trash:\n \"";
 
-u8 main(u8 argc, i8** argv)
+u8 main(u8 argc, s* argv)
 {
     u8 buffer[10] = "";
     u8 exitcode = 0, size = 0;

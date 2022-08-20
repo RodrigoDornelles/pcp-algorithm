@@ -52,4 +52,5 @@ Mkfile.old
 dkms.conf
 
 # Extra
+pcp9_*
 *.log

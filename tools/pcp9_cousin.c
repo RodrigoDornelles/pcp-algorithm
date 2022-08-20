@@ -4,14 +4,12 @@
 #include "../libary/opt9.c"
 #include "../libary/math9.c"
 #include "../libary/types9.c"
-#include "../lockuptables/pi_ascii.c"
-
 
 static const char txt_title[34] =
     "repeat the 9-digit prime numbers.\n"
 ;
 
-int main(u8 argc, i8** argv)
+int main(u8 argc, s* argv)
 {
     u32 number;
     u8 buffer[10] = "";
