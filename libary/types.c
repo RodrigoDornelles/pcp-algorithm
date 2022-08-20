@@ -15,6 +15,10 @@ typedef signed char i8;
 
 typedef unsigned char fn;
 
+typedef void* any;
+
+typedef const void* any_const;
+
 const u8 pcp9 = 9;
 const fn pcp9_fn_error = -1;
 const fn pcp9_exit_error = 15;

@@ -2,6 +2,7 @@
 #define OPT_LIB_PCP_H
 
 #include "types.c"
+#include "files.c"
 
 u8 u8_opt_get(u8 argc, s* argv, i8 key, i8 value)
 {
@@ -39,17 +40,17 @@ u8 fn_opt_get(u8 argc, s* argv, i8 key, i8 value, u16 flags)
         if (argv[i][0] == '-' && argv[i][1] == key) { 
             /** -i=file.txt**/
             if (argv[i][2] == '=' && argv[i][3] != '\0') {
-                value = open(&argv[i][3], flags);
+                value = pcp_open(&argv[i][3], flags);
                 break; 
             }
             /** -ifile.txt **/
             if (argv[i][2] != '\0'){
-                value = open(&argv[i][2], flags);
+                value = pcp_open(&argv[i][2], flags);
                 break;
             }
             /** -i file.txt**/
             if ((i + 1) < argc){
-                value = open(&argv[i+1][0], flags);
+                value = pcp_open(&argv[i+1][0], flags);
                 break;
             }
             /** -i **/

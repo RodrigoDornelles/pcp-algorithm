@@ -1,8 +1,7 @@
-#include <unistd.h>
-#include <fcntl.h>
 #include "../libary/str.c"
 #include "../libary/opt.c"
 #include "../libary/math.c"
+#include "../libary/files.c"
 #include "../libary/types.c"
 
 static const char txt_title[34] =
@@ -38,36 +37,36 @@ int main(int argc, char** argv)
     do {
         /** show options **/
         if (help) {
-            write(STDERR_FILENO, txt_title, sizeof(txt_title));
-            write(STDERR_FILENO, txt_help, sizeof(txt_help));
+            pcp_write(STDERR_FILENO, txt_title, sizeof(txt_title));
+            pcp_write(STDERR_FILENO, txt_help, sizeof(txt_help));
             break;
         }
         /** open files **/
         if (filein == pcp9_fn_error) {
-            write(STDERR_FILENO, str9_txt_error, sizeof(str9_txt_error));
-            write(STDERR_FILENO, str9_txt_fnnot, sizeof(str9_txt_fnnot));
-            write(STDERR_FILENO, str9_txt_input, sizeof(str9_txt_input));
-            write(STDERR_FILENO, str9_txt_end_dot, sizeof(str9_txt_end_dot));
+            pcp_write(STDERR_FILENO, str9_txt_error, sizeof(str9_txt_error));
+            pcp_write(STDERR_FILENO, str9_txt_fnnot, sizeof(str9_txt_fnnot));
+            pcp_write(STDERR_FILENO, str9_txt_input, sizeof(str9_txt_input));
+            pcp_write(STDERR_FILENO, str9_txt_end_dot, sizeof(str9_txt_end_dot));
             exitcode = pcp9_exit_error;
             break;
         }
         if (fileout == pcp9_fn_error) {
-            write(STDERR_FILENO, str9_txt_error, sizeof(str9_txt_error));
-            write(STDERR_FILENO, str9_txt_fnnot, sizeof(str9_txt_fnnot));
-            write(STDERR_FILENO, str9_txt_output, sizeof(str9_txt_output));
-            write(STDERR_FILENO, str9_txt_end_dot, sizeof(str9_txt_end_dot));
+            pcp_write(STDERR_FILENO, str9_txt_error, sizeof(str9_txt_error));
+            pcp_write(STDERR_FILENO, str9_txt_fnnot, sizeof(str9_txt_fnnot));
+            pcp_write(STDERR_FILENO, str9_txt_output, sizeof(str9_txt_output));
+            pcp_write(STDERR_FILENO, str9_txt_end_dot, sizeof(str9_txt_end_dot));
             exitcode = pcp9_exit_error;
             break;
         }
         /** verify search **/
         if (find_stdin && !find_file){
-            find_file = read(STDIN_FILENO, search, pcp9);
+            find_file = pcp_read(STDIN_FILENO, search, pcp9);
         }
         if (find_file != pcp9) {
-            write(STDERR_FILENO, str9_txt_error, sizeof(str9_txt_error));
-            write(STDERR_FILENO, txt_search, sizeof(txt_search));
-            write(STDERR_FILENO, str9_txt_invalid, sizeof(str9_txt_invalid));
-            write(STDERR_FILENO, str9_txt_end_dot, sizeof(str9_txt_end_dot));
+            pcp_write(STDERR_FILENO, str9_txt_error, sizeof(str9_txt_error));
+            pcp_write(STDERR_FILENO, txt_search, sizeof(txt_search));
+            pcp_write(STDERR_FILENO, str9_txt_invalid, sizeof(str9_txt_invalid));
+            pcp_write(STDERR_FILENO, str9_txt_end_dot, sizeof(str9_txt_end_dot));
             exitcode = pcp9_exit_error;
             break;
         }
@@ -75,14 +74,14 @@ int main(int argc, char** argv)
         while(++pos) {
             /** first time **/
             if (buffer[0] == '\0') {
-                size = read(filein, buffer, pcp9);
+                size = pcp_read(filein, buffer, pcp9);
                 if (size != pcp9) {
                     break; /** small file **/
                 }
             }
             /** each time **/
             else {
-                size = read(filein, &c, 1);
+                size = pcp_read(filein, &c, 1);
                 if (size == 0) {
                     break; /** end of file **/
                 }
@@ -90,10 +89,10 @@ int main(int argc, char** argv)
             }
             if (str9_cmp(search, buffer) == true) {
                 str9_cast(search, pos);
-                write(fileout, buffer, pcp9);
-                write(STDERR_FILENO, txt_at_pos, sizeof(txt_at_pos));
-                write(STDERR_FILENO, search, pcp9);
-                write(STDERR_FILENO, str9_txt_end_dot, sizeof(str9_txt_end_dot));
+                pcp_write(fileout, buffer, pcp9);
+                pcp_write(STDERR_FILENO, txt_at_pos, sizeof(txt_at_pos));
+                pcp_write(STDERR_FILENO, search, pcp9);
+                pcp_write(STDERR_FILENO, str9_txt_end_dot, sizeof(str9_txt_end_dot));
                 break;
             }            
         }

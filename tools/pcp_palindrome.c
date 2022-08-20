@@ -1,8 +1,7 @@
-#include <unistd.h>
-#include <fcntl.h>
 #include "../libary/str.c"
 #include "../libary/opt.c"
 #include "../libary/math.c"
+#include "../libary/files.c"
 #include "../libary/types.c"
 
 static const char txt_title[37] = 
@@ -23,36 +22,36 @@ int main(int argc, char** argv)
     do {
         /** show options **/
         if (help) {
-            write(STDERR_FILENO, txt_title, sizeof(txt_title));
-            write(STDERR_FILENO, str9_txt_help, sizeof(str9_txt_help));
+            pcp_write(STDERR_FILENO, txt_title, sizeof(txt_title));
+            pcp_write(STDERR_FILENO, str9_txt_help, sizeof(str9_txt_help));
             break;
         }
         /** open files **/
         if (filein == pcp9_fn_error) {
-            write(STDERR_FILENO, str9_txt_error, sizeof(str9_txt_error));
-            write(STDERR_FILENO, str9_txt_fnnot, sizeof(str9_txt_fnnot));
-            write(STDERR_FILENO, str9_txt_input, sizeof(str9_txt_input));
-            write(STDERR_FILENO, str9_txt_end_dot, sizeof(str9_txt_end_dot));
+            pcp_write(STDERR_FILENO, str9_txt_error, sizeof(str9_txt_error));
+            pcp_write(STDERR_FILENO, str9_txt_fnnot, sizeof(str9_txt_fnnot));
+            pcp_write(STDERR_FILENO, str9_txt_input, sizeof(str9_txt_input));
+            pcp_write(STDERR_FILENO, str9_txt_end_dot, sizeof(str9_txt_end_dot));
             exitcode = pcp9_exit_error;
             break;
         }
         if (fileout == pcp9_fn_error) {
-            write(STDERR_FILENO, str9_txt_error, sizeof(str9_txt_error));
-            write(STDERR_FILENO, str9_txt_fnnot, sizeof(str9_txt_fnnot));
-            write(STDERR_FILENO, str9_txt_output, sizeof(str9_txt_output));
-            write(STDERR_FILENO, str9_txt_end_dot, sizeof(str9_txt_end_dot));
+            pcp_write(STDERR_FILENO, str9_txt_error, sizeof(str9_txt_error));
+            pcp_write(STDERR_FILENO, str9_txt_fnnot, sizeof(str9_txt_fnnot));
+            pcp_write(STDERR_FILENO, str9_txt_output, sizeof(str9_txt_output));
+            pcp_write(STDERR_FILENO, str9_txt_end_dot, sizeof(str9_txt_end_dot));
             exitcode = pcp9_exit_error;
             break;
         }
         /** main loop **/
         while(true) {
-            size = read(filein, buffer, pcp9);
+            size = pcp_read(filein, buffer, pcp9);
             if (size != pcp9) {
                 break; /** end of file **/
             }
             number = str9_palindrome(buffer);
             if (number) {
-                write(fileout, buffer, pcp9); /** found it!**/
+                pcp_write(fileout, buffer, pcp9); /** found it!**/
             }
             if (number && first) {
                 break;  /** exit in first time **/
