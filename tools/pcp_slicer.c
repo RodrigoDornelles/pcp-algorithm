@@ -25,12 +25,12 @@ int main(int argc, char** argv)
 {
     u8 buffer[10] = "";
     u8 exitcode = 0, size = 0;
-    b help = has_opt9_get(argc, argv, 'h');
-    b trash = has_opt9_get(argc, argv, 't');
-    b header = has_opt9_get(argc, argv, 'H');
-    u8 offset = u8_opt9_get(argc, argv, 'O', 0);
-    fn filein = fn_opt9_get(argc, argv, 'i', STDIN_FILENO, O_RDONLY);
-    fn fileout = fn_opt9_get(argc, argv, 'o', STDOUT_FILENO, O_CREAT|O_WRONLY);
+    b help = has_opt_get(argc, argv, 'h');
+    b trash = has_opt_get(argc, argv, 't');
+    b header = has_opt_get(argc, argv, 'H');
+    u8 offset = u8_opt_get(argc, argv, 'O', 0);
+    fn filein = fn_opt_get(argc, argv, 'i', STDIN_FILENO, O_RDONLY);
+    fn fileout = fn_opt_get(argc, argv, 'o', STDOUT_FILENO, O_CREAT|O_WRONLY);
 
     do {
         /** show options **/
