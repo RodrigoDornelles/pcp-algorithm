@@ -1,5 +1,5 @@
 clean:
-	rm -f pcp_*
+	rm -f pcp9_*
 
 build: clean
 	${CC} tools/pcp9_pos.c -o pcp9_pos
