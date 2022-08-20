@@ -1,10 +1,9 @@
-#ifndef _MATH_9_H
-#define _MATH_9_H
+#ifndef MATH_9_H
+#define MATH_9_H
 
-#define true 1
-#define false 0
+#include "types9.c"
 
-int str9_to_int(const char* txt)
+int math9_cast(const char* txt)
 {
     return (
         ((txt[0] - '0') * 100000000) + 
@@ -19,7 +18,7 @@ int str9_to_int(const char* txt)
     );
 }
 
-char is_cousin_fast(int n)
+char math9_cousin(int n)
 {
     // Corner cases
 	if (n <= 1)
@@ -39,17 +38,6 @@ char is_cousin_fast(int n)
 	}
 
 	return true;
-}
-
-char str9_is_palindrome(const char* txt)
-{
-    return (
-        (txt[0] == txt[9]) &&
-        (txt[1] == txt[8]) &&
-        (txt[2] == txt[7]) &&
-        (txt[3] == txt[6]) &&
-        (txt[4] == txt[5])
-    );
 }
 
 #endif

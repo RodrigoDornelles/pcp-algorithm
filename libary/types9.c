@@ -12,7 +12,8 @@ typedef signed char i8;
 typedef unsigned char fn;
 
 const u8 pcp9 = 9;
-const fn fnerror = -1;
+const fn pcp9_fn_error = -1;
+const fn pcp9_exit_error = 15;
 
 enum bu {
     false = (u8) 0u,
