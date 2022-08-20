@@ -6,7 +6,7 @@ all:
 	@echo " > make single-run"
 
 clean:
-	rm -f bin/*
+	rm -f bin/* *.o
 
 all-deps: bin/pcp_slicer bin/pcp_cousin bin/pcp_palindrome bin/pcp_pos
 	@

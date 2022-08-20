@@ -3,6 +3,14 @@
 
 typedef char* s;
 
+typedef unsigned long size_t;
+
+typedef unsigned long uintptr_t;
+
+typedef unsigned long uint64_t;
+
+typedef unsigned int uint32_t;
+
 typedef unsigned int u32;
 
 typedef signed int i32;

@@ -2,6 +2,7 @@
 #include "../libary/opt.c"
 #include "../libary/files.c"
 #include "../libary/types.c"
+#include "../libary/memory.c"
 
 static const char txt_title[52] = 
     "slicer 9-character, with offset and header removal.\n"
