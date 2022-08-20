@@ -1,7 +1,7 @@
-#ifndef MATH_9_H
-#define MATH_9_H
+#ifndef MATH_LIB_PCP_H
+#define MATH_LIB_PCP_H
 
-#include "types9.c"
+#include "types.c"
 
 int math9_cast(const char* txt)
 {

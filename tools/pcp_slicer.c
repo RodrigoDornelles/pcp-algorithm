@@ -1,8 +1,8 @@
 #include <unistd.h>
 #include <fcntl.h>
-#include "../libary/str9.c"
-#include "../libary/opt9.c"
-#include "../libary/types9.c"
+#include "../libary/str.c"
+#include "../libary/opt.c"
+#include "../libary/types.c"
 
 static const char txt_title[52] = 
     "slicer 9-character, with offset and header removal.\n"

@@ -1,7 +1,7 @@
-#ifndef STR_9_H
-#define STR_9_H
+#ifndef STR_LIB_PCP_H
+#define STR_LIB_PCP_H
 
-#include "types9.c"
+#include "types.c"
 
 const char str9_txt_error[9] = "error:\n ";
 const char str9_txt_fnnot[15] = "could not open ";

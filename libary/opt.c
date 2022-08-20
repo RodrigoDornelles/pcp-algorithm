@@ -1,7 +1,7 @@
-#ifndef OPT_9_H
-#define OPT_9_H
+#ifndef OPT_LIB_PCP_H
+#define OPT_LIB_PCP_H
 
-#include "types9.c"
+#include "types.c"
 
 u8 u8_opt9_get(u8 argc, s* argv, i8 key, i8 value)
 {

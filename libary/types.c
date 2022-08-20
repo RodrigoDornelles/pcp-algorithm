@@ -1,5 +1,5 @@
-#ifndef TYPES_H
-#define TYPES_H
+#ifndef TYPES_LIB_PCP_H
+#define TYPES_LIB_PCP_H
 
 typedef char* s;
 

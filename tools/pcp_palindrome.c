@@ -1,9 +1,9 @@
 #include <unistd.h>
 #include <fcntl.h>
-#include "../libary/str9.c"
-#include "../libary/opt9.c"
-#include "../libary/math9.c"
-#include "../libary/types9.c"
+#include "../libary/str.c"
+#include "../libary/opt.c"
+#include "../libary/math.c"
+#include "../libary/types.c"
 
 static const char txt_title[37] = 
     "repeat the 9-character palindromes.\n"
