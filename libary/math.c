@@ -13,7 +13,7 @@ i8 math2_cast(const char* txt)
 	return res;
 }
 
-u64 math9_cast(const char* txt)
+u128 math9_cast(const char* txt)
 {
     return (
         ((txt[0] - '0') * 100000000u) + 
@@ -28,10 +28,11 @@ u64 math9_cast(const char* txt)
     );
 }
 
-u64 math21_cast(const char* txt)
+
+u128 math21_cast(const char* txt)
 {
     return (
-        ((txt[0] - '0') * 100000000000000000000u) + 
+        ((txt[0] - '0') * (10000000000000000000u * 10u)) + 
         ((txt[1] - '0') * 10000000000000000000u) + 
         ((txt[2] - '0') * 1000000000000000000u) +
 		((txt[3] - '0') * 100000000000000000u) + 
@@ -55,7 +56,7 @@ u64 math21_cast(const char* txt)
     );
 }
 
-char math_cousin(int n)
+b math_cousin(u128 n)
 {
     // Corner cases
 	if (n <= 1)
