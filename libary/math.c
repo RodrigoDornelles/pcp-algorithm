@@ -66,6 +66,8 @@ u128 math21_cast(char* txt)
 
 b math_cousin(u128 n)
 {
+    u128 i;
+
     // Corner cases
 	if (n <= 1)
 		return false;
@@ -77,7 +79,7 @@ b math_cousin(u128 n)
 	if (n % 2 == 0 || n % 3 == 0)
 		return false;
 
-	for (int i = 5; i * i <= n; i = i + 6) {
+	for (i = 5; i * i <= n; i = i + 6) {
 		if (n % i == 0 || n % (i + 2) == 0) {
 			return false;
 		}
