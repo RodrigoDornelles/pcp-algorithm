@@ -16,7 +16,6 @@ static const char txt_help[] =
 ;
 
 static const char txt_search[11] = "the search ";
-static const char txt_at_pos[8] = "at pos: ";
 
 int main(int argc, char** argv)
 {
@@ -103,10 +102,9 @@ int main(int argc, char** argv)
             }
             if (str9_cmp(search, buffer) == true) {
                 func->str_from_int(buffer2, pos);
+                pcp_write(fileout, buffer2, func->size);
+                pcp_write(fileout, ":", 1);
                 pcp_write(fileout, buffer, func->size);
-                pcp_write(STDERR_FILENO, txt_at_pos, sizeof(txt_at_pos));
-                pcp_write(STDERR_FILENO, buffer2, func->size);
-                pcp_write(STDERR_FILENO, str_txt_end_dot, sizeof(str_txt_end_dot));
                 if (first) {
                     break;
                 }
