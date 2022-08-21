@@ -3,6 +3,16 @@
 
 #include "types.c"
 
+i8 math2_cast(const char* txt)
+{
+	i8 res = (txt[0] - '0');
+	if (txt[1] != '\0') {
+		res *= 10;
+		res += (txt[1] - '0');
+	}
+	return res;
+}
+
 int math9_cast(const char* txt)
 {
     return (

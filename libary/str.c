@@ -3,19 +3,21 @@
 
 #include "types.c"
 
-const char str9_txt_error[9] = "error:\n ";
-const char str9_txt_fnnot[15] = "could not open ";
-const char str9_txt_input[10] = "input file";
-const char str9_txt_output[11] = "output file";
-const char str9_txt_invalid[10] = "is invalid";
-const char str9_txt_end_dot[] = ".\n";
-const char str9_txt_end_quote[] = "\"\n";
-const char str9_txt_help[] =
-    "usage:\n"
-    " -h <----------- help\n"
-    " -f <----------- first\n"
-    " -ofile1.txt <-- output\n"
-    " -ifile2.txt <-- input\n"
+const char str_txt_tier[4] = "tier";
+const char str_txt_head[4] = "head";
+const char str_txt_usage[8] = "usage:\n ";
+const char str_txt_error[8] = "error:\n ";
+const char str_txt_invalid[8] = "invalid ";
+const char str_txt_fnnot[16] = "could not open: ";
+const char str_txt_end_quote[3] = "\"\n\0";
+const char str_txt_end_dot[3] = ".\n\0";
+const char str_txt_input[10] = "input file";
+const char str_txt_output[11] = "output file";
+const char str_txt_help[] =
+    "-f <--------- only first\n "
+    "-T1 <-------- select tier\n "
+    "-o f1.txt <-- output file\n "
+    "-i f2.txt <-- input file\n"
 ;
 
 

@@ -9,12 +9,8 @@ static const char txt_title[34] =
 ;
 
 static const char txt_help[] =
-    "usage:\n"
-    " -h <----------- help\n"
-    " -S <----------- search\n"
-    " -s01234321 <--- search\n"
-    " -ofile1.txt <-- output\n"
-    " -ifile2.txt <-- input\n"
+    "-S <--------- search stdin\n "
+    "-s000... <--- search term\n "
 ;
 
 static const char txt_search[11] = "the search ";
@@ -38,23 +34,25 @@ int main(int argc, char** argv)
         /** show options **/
         if (help) {
             pcp_write(STDERR_FILENO, txt_title, sizeof(txt_title));
+            pcp_write(STDERR_FILENO, str_txt_usage, sizeof(str_txt_usage));
             pcp_write(STDERR_FILENO, txt_help, sizeof(txt_help));
+            pcp_write(STDERR_FILENO, str_txt_help, sizeof(str_txt_help));
             break;
         }
         /** open files **/
         if (filein == pcp9_fn_error) {
-            pcp_write(STDERR_FILENO, str9_txt_error, sizeof(str9_txt_error));
-            pcp_write(STDERR_FILENO, str9_txt_fnnot, sizeof(str9_txt_fnnot));
-            pcp_write(STDERR_FILENO, str9_txt_input, sizeof(str9_txt_input));
-            pcp_write(STDERR_FILENO, str9_txt_end_dot, sizeof(str9_txt_end_dot));
+            pcp_write(STDERR_FILENO, str_txt_error, sizeof(str_txt_error));
+            pcp_write(STDERR_FILENO, str_txt_fnnot, sizeof(str_txt_fnnot));
+            pcp_write(STDERR_FILENO, str_txt_input, sizeof(str_txt_input));
+            pcp_write(STDERR_FILENO, str_txt_end_dot, sizeof(str_txt_end_dot));
             exitcode = pcp9_exit_error;
             break;
         }
         if (fileout == pcp9_fn_error) {
-            pcp_write(STDERR_FILENO, str9_txt_error, sizeof(str9_txt_error));
-            pcp_write(STDERR_FILENO, str9_txt_fnnot, sizeof(str9_txt_fnnot));
-            pcp_write(STDERR_FILENO, str9_txt_output, sizeof(str9_txt_output));
-            pcp_write(STDERR_FILENO, str9_txt_end_dot, sizeof(str9_txt_end_dot));
+            pcp_write(STDERR_FILENO, str_txt_error, sizeof(str_txt_error));
+            pcp_write(STDERR_FILENO, str_txt_fnnot, sizeof(str_txt_fnnot));
+            pcp_write(STDERR_FILENO, str_txt_output, sizeof(str_txt_output));
+            pcp_write(STDERR_FILENO, str_txt_end_dot, sizeof(str_txt_end_dot));
             exitcode = pcp9_exit_error;
             break;
         }
@@ -63,10 +61,10 @@ int main(int argc, char** argv)
             find_file = pcp_read(STDIN_FILENO, search, pcp9);
         }
         if (find_file != pcp9) {
-            pcp_write(STDERR_FILENO, str9_txt_error, sizeof(str9_txt_error));
+            pcp_write(STDERR_FILENO, str_txt_error, sizeof(str_txt_error));
             pcp_write(STDERR_FILENO, txt_search, sizeof(txt_search));
-            pcp_write(STDERR_FILENO, str9_txt_invalid, sizeof(str9_txt_invalid));
-            pcp_write(STDERR_FILENO, str9_txt_end_dot, sizeof(str9_txt_end_dot));
+            pcp_write(STDERR_FILENO, str_txt_invalid, sizeof(str_txt_invalid));
+            pcp_write(STDERR_FILENO, str_txt_end_dot, sizeof(str_txt_end_dot));
             exitcode = pcp9_exit_error;
             break;
         }
@@ -92,7 +90,7 @@ int main(int argc, char** argv)
                 pcp_write(fileout, buffer, pcp9);
                 pcp_write(STDERR_FILENO, txt_at_pos, sizeof(txt_at_pos));
                 pcp_write(STDERR_FILENO, search, pcp9);
-                pcp_write(STDERR_FILENO, str9_txt_end_dot, sizeof(str9_txt_end_dot));
+                pcp_write(STDERR_FILENO, str_txt_end_dot, sizeof(str_txt_end_dot));
                 break;
             }            
         }

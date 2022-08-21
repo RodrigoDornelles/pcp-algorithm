@@ -1,6 +1,7 @@
 #ifndef OPT_LIB_PCP_H
 #define OPT_LIB_PCP_H
 
+#include "math.c"
 #include "types.c"
 #include "files.c"
 
@@ -10,7 +11,7 @@ u8 u8_opt_get(u8 argc, s* argv, i8 key, i8 value)
     
     for(;i < argc; i++) {
         if (argv[i][0] == '-' && argv[i][1] == key) {
-            value = argv[i][2] - '0';
+            value = math2_cast(&argv[i][2]);
             break;
         }
     }
