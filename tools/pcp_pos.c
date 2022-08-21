@@ -29,7 +29,7 @@ int main(int argc, char** argv)
     b help = has_opt_get(argc, argv, 'h');
     b first = has_opt_get(argc, argv, 'f');
     b find_stdin = has_opt_get(argc, argv, 'S');
-    u8 tier = u8_opt_get(argc, argv, 't', 1);
+    u8 tier = u8_opt_get(argc, argv, 'T', 1);
     u8 find_file = txt_opt_get(argc, argv, 's', search);
     fn filein = fn_opt_get(argc, argv, 'i', STDIN_FILENO, O_RDONLY);
     fn fileout = fn_opt_get(argc, argv, 'o', STDOUT_FILENO, O_CREAT|O_WRONLY);

@@ -17,7 +17,7 @@ int main(int argc, char** argv)
     char buffer[VT_IDEAL_SIZE] = "";
     b help = has_opt_get(argc, argv, 'h');
     b first = has_opt_get(argc, argv, 'f');
-    u8 tier = u8_opt_get(argc, argv, 't', 1);
+    u8 tier = u8_opt_get(argc, argv, 'T', 1);
     fn filein = fn_opt_get(argc, argv, 'i', STDIN_FILENO, O_RDONLY);
     fn fileout = fn_opt_get(argc, argv, 'o', STDOUT_FILENO, O_CREAT|O_WRONLY);
 
