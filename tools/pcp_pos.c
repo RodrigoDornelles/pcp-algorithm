@@ -22,8 +22,10 @@ int main(int argc, char** argv)
     u32 pos = 0;
     u8 search[10];
     u8 buffer[10] = "";
+    u8 buffer2[10] = "";
     u8 exitcode = 0, size = 0;
     b help = has_opt_get(argc, argv, 'h');
+    b first = has_opt_get(argc, argv, 'f');
     b find_stdin = has_opt_get(argc, argv, 'S');
     u8 find_file = txt_opt_get(argc, argv, 's', search);
     u8 offset = u8_opt_get(argc, argv, 'O', 0);
@@ -86,12 +88,14 @@ int main(int argc, char** argv)
                 str9_stack(buffer, c);                
             }
             if (str9_cmp(search, buffer) == true) {
-                str9_cast(search, pos);
+                str9_cast(buffer2, pos);
                 pcp_write(fileout, buffer, pcp9);
                 pcp_write(STDERR_FILENO, txt_at_pos, sizeof(txt_at_pos));
-                pcp_write(STDERR_FILENO, search, pcp9);
+                pcp_write(STDERR_FILENO, buffer2, pcp9);
                 pcp_write(STDERR_FILENO, str_txt_end_dot, sizeof(str_txt_end_dot));
-                break;
+                if (first) {
+                    break;
+                }
             }            
         }
     }   

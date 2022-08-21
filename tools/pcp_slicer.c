@@ -22,6 +22,7 @@ int main(int argc, char** argv)
     u8 exitcode = 0, size = 0;
     b help = has_opt_get(argc, argv, 'h');
     b trash = has_opt_get(argc, argv, 't');
+    b first = has_opt_get(argc, argv, 'f');
     b header = has_opt_get(argc, argv, 'H');
     u8 tier = u8_opt_get(argc, argv, 'T', 1);
     u8 offset = u8_opt_get(argc, argv, 'O', 0);
@@ -114,6 +115,9 @@ int main(int argc, char** argv)
                 break; /** end of file **/
             }
             pcp_write(fileout, buffer, pcp9);
+            if (first) {
+                break;
+            }
         }
     }
     while (false);
