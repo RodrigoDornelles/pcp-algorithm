@@ -3,19 +3,21 @@
 #include "../libary/math.c"
 #include "../libary/files.c"
 #include "../libary/types.c"
+#include "../libary/vtable.c"
 
-static const char txt_title[34] =
-    "repeat the 9-digit prime numbers.\n"
+static const char txt_title[33] =
+    "repeat the digits prime numbers.\n"
 ;
 
 int main(int argc, char** argv)
 {
-    u32 number;
-    u8 buffer[10] = "";
+    fvt func;
+    u64 number;
     u8 exitcode = 0, size = 0;
+    u8 buffer[VT_IDEAL_SIZE] = "";
     b help = has_opt_get(argc, argv, 'h');
     b first = has_opt_get(argc, argv, 'f');
-    u8 offset = u8_opt_get(argc, argv, 'O', 0);
+    u8 tier = u8_opt_get(argc, argv, 't', 1);
     fn filein = fn_opt_get(argc, argv, 'i', STDIN_FILENO, O_RDONLY);
     fn fileout = fn_opt_get(argc, argv, 'o', STDOUT_FILENO, O_CREAT|O_WRONLY);
 
@@ -44,16 +46,27 @@ int main(int argc, char** argv)
             exitcode = pcp9_exit_error;
             break;
         }
+        /** tier select **/
+        if (VT_MIN_TIER > tier || tier > VT_MAX_TIER) {
+            pcp_write(STDERR_FILENO, str_txt_error, sizeof(str_txt_error));
+            pcp_write(STDERR_FILENO, str_txt_tier, sizeof(str_txt_tier));
+            pcp_write(STDERR_FILENO, str_txt_invalid, sizeof(str_txt_invalid));
+            pcp_write(STDERR_FILENO, str_txt_end_dot, sizeof(str_txt_end_dot));
+            exitcode = pcp9_exit_error;
+            break;
+        } else {
+            func = vt_tier(tier);
+        }
         /** main loop **/
         while(true) {
-            size = pcp_read(filein, buffer, pcp9);
-            if (size != pcp9) {
+            size = pcp_read(filein, buffer, func->size);
+            if (size != func->size) {
                 break; /** end of file **/
             }
-            number = math9_cast(buffer);
-            number = math9_cousin(number);
+            number = func->int_from_str(buffer);
+            number = func->int_cousin(number);
             if (number) {
-                pcp_write(fileout, buffer, pcp9); /** found it!**/
+                pcp_write(fileout, buffer, size); /** found it!**/
             }
             if (number && first) {
                 break;  /** exit in first time **/

@@ -62,6 +62,17 @@ i8 str9_stack(char* txt, i8 new_char)
     return old_char;
 }
 
+/** TODO: does not work, make do it run! **/
+i8 str21_stack(char* txt, i8 new_char)
+{
+    i8 old_char =  txt[0];
+    new_char = str21_stack(&txt[11], new_char);
+    new_char = str21_stack(&txt[2], new_char);
+    txt[0] = txt[1];
+    txt[1] = new_char;
+    return old_char;
+}
+
 b str9_palindrome(char* txt)
 {
     return (
@@ -72,16 +83,42 @@ b str9_palindrome(char* txt)
     );
 }
 
-i32 str9_cast(char* txt, i32 value)
+
+b str21_palindrome(char* txt)
 {
-    int i = 9;
+    return (
+        (txt[0] == txt[20]) &&
+        (txt[1] == txt[19]) &&
+        (txt[2] == txt[18]) &&
+        (txt[3] == txt[17]) &&
+        (txt[4] == txt[16]) &&
+        (txt[5] == txt[15]) &&
+        (txt[6] == txt[14]) &&
+        (txt[7] == txt[13]) &&
+        (txt[8] == txt[12]) &&
+        (txt[9] == txt[11])
+    );
+}
+
+u64 str_cast(char* txt, u64 value, u8 size)
+{
     do {
-        i -= 1;
-        txt[i] = '0' + (value % 10);
+        size -= 1;
+        txt[size] = '0' + (value % 10);
         value = (value / 10);
     }
-    while(i);
+    while(size);
     return value;
+}
+
+u64 str9_cast(char* txt, u64 value)
+{
+    return str_cast(txt, value, 9);
+}
+
+u64 str21_cast(char* txt, u64 value)
+{
+    return str_cast(txt, value, 21);
 }
 
 #endif

@@ -2,9 +2,11 @@
 #include "../libary/opt.c"
 #include "../libary/files.c"
 #include "../libary/types.c"
+#include "../libary/vtable.c"
 
-static const char txt_title[52] = 
-    "slicer 9-character, with offset and header removal.\n"
+
+static const char txt_title[39] = 
+    "slicer with offset and header removal.\n"
 ;
 static const char txt_help[] =
     "-H <--------- rm header\n "
@@ -18,8 +20,9 @@ static const char txt_trash[] = "trash:\n \"";
 
 int main(int argc, char** argv)
 {
-    u8 buffer[10] = "";
+    fvt func;
     u8 exitcode = 0, size = 0;
+    u8 buffer[VT_IDEAL_SIZE] = "";
     b help = has_opt_get(argc, argv, 'h');
     b trash = has_opt_get(argc, argv, 't');
     b first = has_opt_get(argc, argv, 'f');
@@ -56,13 +59,15 @@ int main(int argc, char** argv)
             break;
         }
         /** tier select **/
-        if (1 > tier || tier > 3) {
+        if (VT_MIN_TIER > tier || tier > VT_MAX_TIER) {
             pcp_write(STDERR_FILENO, str_txt_error, sizeof(str_txt_error));
             pcp_write(STDERR_FILENO, str_txt_tier, sizeof(str_txt_tier));
             pcp_write(STDERR_FILENO, str_txt_invalid, sizeof(str_txt_invalid));
             pcp_write(STDERR_FILENO, str_txt_end_dot, sizeof(str_txt_end_dot));
             exitcode = pcp9_exit_error;
             break;
+        } else {
+            func = vt_tier(tier);
         }
         /** header remove **/
         if (header) {
@@ -110,11 +115,11 @@ int main(int argc, char** argv)
         }
         /** main loop **/
         while(true) {
-            size = pcp_read(filein, buffer, pcp9);
-            if (size != pcp9) {
+            size = pcp_read(filein, buffer, func->size);
+            if (size != func->size) {
                 break; /** end of file **/
             }
-            pcp_write(fileout, buffer, pcp9);
+            pcp_write(fileout, buffer, func->size);
             if (first) {
                 break;
             }
