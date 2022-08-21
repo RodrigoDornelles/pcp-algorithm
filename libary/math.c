@@ -3,7 +3,7 @@
 
 #include "types.c"
 
-i8 math2_cast(const char* txt)
+i8 math2_cast(char* txt)
 {
 	i8 res = (txt[0] - '0');
 	if (txt[1] != '\0') {
@@ -13,7 +13,7 @@ i8 math2_cast(const char* txt)
 	return res;
 }
 
-u128 math9_cast(const char* txt)
+u128 math9_cast(char* txt)
 {
     return (
         ((txt[0] - '0') * 100000000u) + 
@@ -29,7 +29,7 @@ u128 math9_cast(const char* txt)
 }
 
 
-u128 math21_cast(const char* txt)
+u128 math21_cast(char* txt)
 {
     return (
         ((txt[0] - '0') * (10000000000000000000u * 10u)) + 
