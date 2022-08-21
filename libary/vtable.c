@@ -29,7 +29,7 @@ static const struct vtable_funcs_s vtable[] = {
         .int_from_str = &math9_cast,
         .int_cousin = &math_cousin,
         .str_from_int = &str9_cast,
-        .str_stack = &str9_stack
+        .str_stack = &str9_stack,
         .str_palindrome = &str9_palindrome
     },
     {

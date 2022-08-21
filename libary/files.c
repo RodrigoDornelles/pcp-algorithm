@@ -15,67 +15,87 @@ const u32 O_WRONLY = 0x001u;
 
 u32 pcp_open(any_const pointer, u32 flags)
 {
+    u32 ret;
 #if defined(_USE_STD)
     return open(pointer, flags);
-#else
-    u32 ret;
+#elif defined(__x86_64__) && defined(__APPLE__)
     asm("syscall"
         : "=a"(ret)
-#if defined(__APPLE__)
         :"0"(0x2000005),
-#elif defined(__linux__)
-        :"0"(2),
-#endif
         "b"(pointer),
         "c"(flags)
         :"memory"
     );
-    return ret;
+#elif defined(__x86_64__) && defined(__linux__)
+    asm("syscall"
+        :"=a"(ret)
+        :"0"(2),
+        "D"(pointer),
+        "S"(flags)
+        :"memory"
+    );
+#else 
+#error not support. 
 #endif
+    return ret;
 }
 
 u32 pcp_write(u8 fileno, any_const pointer, u32 size)
 {
+    u32 ret;
 #if defined(_USE_STD)
     return write(fileno, pointer, size);
-#else
-    u32 ret;
+#elif defined(__x86_64__) && defined(__APPLE__)
     asm("syscall"
         : "=a"(ret)
-#if defined(__APPLE__)
         :"0"(0x2000004),
-#elif defined(__linux__)
-        :"0"(1),
-#endif
         "b"(fileno),
         "c"(pointer),
         "d"(size)
         :"memory"
     );
-    return ret;
+#elif defined(__x86_64__) && defined(__linux__)
+    asm("syscall"
+        :"=a"(ret)
+        :"0"(1),
+        "D"(fileno),
+        "S"(pointer),
+        "d"(size)
+        :"memory"
+    );
+#else 
+#error not support.   
 #endif
+    return ret;
 }
 
 u32 pcp_read(u8 fileno, any_const pointer, u32 size)
 {
+    u32 ret;
 #if defined(_USE_STD)
     return read(fileno, pointer, size);
-#else
-    u32 ret;
+#elif defined(__x86_64__) && defined(__APPLE__)
     asm("syscall"
         : "=a"(ret)
-#if defined(__APPLE__)
         :"0"(0x2000003),
-#elif defined(__linux__)
-        :"0"(3),
-#endif
         "b"(fileno),
         "c"(pointer),
         "d"(size)
         :"memory"
     );
+#elif defined(__x86_64__) && defined(__linux__)
+    asm("syscall"
+        :"=a"(ret)
+        :"0"(0),
+        "D"(fileno),
+        "S"(pointer),
+        "d"(size)
+        :"memory"
+    );
+#else 
+#error not support.   
+#endif 
     return ret;
-#endif
 }
 
 #endif
