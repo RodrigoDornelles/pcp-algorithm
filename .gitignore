@@ -54,3 +54,6 @@ dkms.conf
 # Extra
 *.log
 bin/*
+data/*
+!bin/.gitkeep
+!data/.gitkeep
