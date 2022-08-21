@@ -5,7 +5,7 @@
 #include "types.c"
 #include "files.c"
 
-u8 u8_opt_get(u8 argc, s* argv, i8 key, i8 value)
+u8 u8_opt_get(u8 argc, char ** argv, i8 key, i8 value)
 {
     u8 i = 0;
     
@@ -20,7 +20,7 @@ u8 u8_opt_get(u8 argc, s* argv, i8 key, i8 value)
 }
 
 
-b has_opt_get(u8 argc, s* argv, i8 key)
+b has_opt_get(u8 argc, char ** argv, i8 key)
 {
     u8 i = 0;
     
@@ -33,7 +33,7 @@ b has_opt_get(u8 argc, s* argv, i8 key)
     return false;
 }
 
-u8 fn_opt_get(u8 argc, s* argv, i8 key, i8 value, u16 flags)
+u8 fn_opt_get(u8 argc, char ** argv, i8 key, i8 value, u16 flags)
 {
     u8 i = 0;
     
@@ -63,7 +63,7 @@ u8 fn_opt_get(u8 argc, s* argv, i8 key, i8 value, u16 flags)
     return value;
 }
 
-u8 txt_opt_get(u8 argc, s* argv, i8 key, s txt)
+u8 txt_opt_get(u8 argc, char ** argv, i8 key, char * txt)
 {
     u8 i = 0, size = 0;
     

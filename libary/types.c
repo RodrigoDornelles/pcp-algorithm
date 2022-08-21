@@ -1,8 +1,6 @@
 #ifndef TYPES_LIB_PCP_H
 #define TYPES_LIB_PCP_H
 
-typedef char* s;
-
 typedef unsigned __int128 u128;
 typedef unsigned long u64;
 typedef unsigned int u32;

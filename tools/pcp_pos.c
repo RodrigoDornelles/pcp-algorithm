@@ -23,9 +23,9 @@ int main(int argc, char** argv)
     fvt func;
     u64 pos = 0;
     u8 exitcode = 0, size = 0;
-    u8 search[VT_IDEAL_SIZE];
-    u8 buffer[VT_IDEAL_SIZE] = "";
-    u8 buffer2[VT_IDEAL_SIZE] = "";
+    char search[VT_IDEAL_SIZE];
+    char buffer[VT_IDEAL_SIZE] = "";
+    char buffer2[VT_IDEAL_SIZE] = "";
     b help = has_opt_get(argc, argv, 'h');
     b first = has_opt_get(argc, argv, 'f');
     b find_stdin = has_opt_get(argc, argv, 'S');

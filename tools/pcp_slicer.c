@@ -21,8 +21,8 @@ static const char txt_trash[] = "trash:\n \"";
 int main(int argc, char** argv)
 {
     fvt func;
-    u8 exitcode = 0, size = 0;
-    u8 buffer[VT_IDEAL_SIZE] = "";
+    char exitcode = 0, size = 0;
+    char buffer[VT_IDEAL_SIZE] = "";
     b help = has_opt_get(argc, argv, 'h');
     b trash = has_opt_get(argc, argv, 't');
     b first = has_opt_get(argc, argv, 'f');

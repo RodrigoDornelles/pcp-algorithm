@@ -14,7 +14,7 @@ int main(int argc, char** argv)
     fvt func;
     b number;
     u8 exitcode = 0, size = 0;
-    u8 buffer[VT_IDEAL_SIZE] = "";
+    char buffer[VT_IDEAL_SIZE] = "";
     b help = has_opt_get(argc, argv, 'h');
     b first = has_opt_get(argc, argv, 'f');
     u8 tier = u8_opt_get(argc, argv, 't', 1);
