@@ -12,7 +12,7 @@ static const char txt_title[33] =
 int main(int argc, char** argv)
 {
     fvt func;
-    u64 number;
+    u128 number;
     u8 exitcode = 0, size = 0;
     char buffer[VT_IDEAL_SIZE] = "";
     b help = has_opt_get(argc, argv, 'h');
