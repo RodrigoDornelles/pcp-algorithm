@@ -19,7 +19,7 @@ bin/%:
 single-run: build
 	for i in 1 2 3 4 5 6 7 8; do \
 		./bin/pcp_slicer -T${TIER} -O$$i -H -i data/sausage.txt |\
-		./bin/pcp_cousin -T${TIER} |\
-		./bin/pcp_palindrome -T${TIER} -f |\
+		./bin/pcp_palindrome -T${TIER} |\
+		./bin/pcp_cousin -T${TIER} -f |\
 		(./bin/pcp_pos -T${TIER} -S -i data/sausage.txt||true);\
 	done
