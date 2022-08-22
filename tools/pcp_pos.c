@@ -15,7 +15,7 @@ static const char txt_help[] =
     "-s000... <--- search term\n "
 ;
 
-static const char txt_search[11] = "the search ";
+static const char txt_search[6] = "search";
 
 int main(int argc, char** argv)
 {
@@ -63,8 +63,8 @@ int main(int argc, char** argv)
         /** tier select **/
         if (VT_MIN_TIER > tier || tier > VT_MAX_TIER) {
             pcp_write(STDERR_FILENO, str_txt_error, sizeof(str_txt_error));
-            pcp_write(STDERR_FILENO, str_txt_tier, sizeof(str_txt_tier));
             pcp_write(STDERR_FILENO, str_txt_invalid, sizeof(str_txt_invalid));
+            pcp_write(STDERR_FILENO, str_txt_tier, sizeof(str_txt_tier));
             pcp_write(STDERR_FILENO, str_txt_end_dot, sizeof(str_txt_end_dot));
             exitcode = pcp9_exit_error;
             break;
@@ -77,8 +77,8 @@ int main(int argc, char** argv)
         }
         if (find_file != func->size) {
             pcp_write(STDERR_FILENO, str_txt_error, sizeof(str_txt_error));
-            pcp_write(STDERR_FILENO, txt_search, sizeof(txt_search));
             pcp_write(STDERR_FILENO, str_txt_invalid, sizeof(str_txt_invalid));
+            pcp_write(STDERR_FILENO, txt_search, sizeof(txt_search));
             pcp_write(STDERR_FILENO, str_txt_end_dot, sizeof(str_txt_end_dot));
             exitcode = pcp9_exit_error;
             break;
