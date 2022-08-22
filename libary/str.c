@@ -66,10 +66,11 @@ i8 str9_stack(char* txt, char new_char)
 i8 str21_stack(char* txt, char new_char)
 {
     i8 old_char =  txt[0];
-    new_char = str21_stack(&txt[11], new_char);
-    new_char = str21_stack(&txt[2], new_char);
+    new_char = str9_stack(&txt[12], new_char);
+    new_char = str9_stack(&txt[3], new_char);
     txt[0] = txt[1];
-    txt[1] = new_char;
+    txt[1] = txt[2];
+    txt[2] = new_char;
     return old_char;
 }
 
