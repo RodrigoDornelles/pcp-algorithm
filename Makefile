@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 TIER := 1
+=======
+TIER ?= 1
+>>>>>>> 9481a16bf2fdbe6064d098308320702daa71d013
 
 all:
 	@echo "usage:"
@@ -10,13 +14,13 @@ all:
 clean:
 	rm -f bin/* *.o
 
-all-deps: bin/pcp_slicer bin/pcp_cousin bin/pcp_palindrome bin/pcp_pos
-	@
+build: bin/pcp_slicer bin/pcp_cousin bin/pcp_palindrome bin/pcp_pos
+	@echo all done!
 
 bin/%:
 	${CC} ${CC_FLAGS} tools/$*.c -o bin/$*
 
-single-run: all-deps
+single-run: build
 	for i in 1 2 3 4 5 6 7 8; do \
 		./bin/pcp_slicer -T${TIER} -O$$i -H -idata/sausage.txt |\
 		./bin/pcp_cousin -T${TIER} |\

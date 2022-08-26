@@ -14,9 +14,9 @@
 
 struct vtable_funcs_s {
     u8 size;
-    u64 (*int_from_str)(char*);
-    b (*int_cousin)(u64);
-    u64 (*str_from_int)(char*, u64);
+    u128 (*int_from_str)(char*);
+    b (*int_cousin)(u128);
+    u128 (*str_from_int)(char*, u128);
     i8 (*str_stack)(char*, i8);
     b (*str_palindrome)(char*);
 };

@@ -14,10 +14,10 @@ int main(int argc, char** argv)
     fvt func;
     b number;
     u8 exitcode = 0, size = 0;
-    u8 buffer[VT_IDEAL_SIZE] = "";
+    char buffer[VT_IDEAL_SIZE] = "";
     b help = has_opt_get(argc, argv, 'h');
     b first = has_opt_get(argc, argv, 'f');
-    u8 tier = u8_opt_get(argc, argv, 't', 1);
+    u8 tier = u8_opt_get(argc, argv, 'T', 1);
     fn filein = fn_opt_get(argc, argv, 'i', STDIN_FILENO, O_RDONLY);
     fn fileout = fn_opt_get(argc, argv, 'o', STDOUT_FILENO, O_CREAT|O_WRONLY);
 
@@ -49,8 +49,8 @@ int main(int argc, char** argv)
         /** tier select **/
         if (VT_MIN_TIER > tier || tier > VT_MAX_TIER) {
             pcp_write(STDERR_FILENO, str_txt_error, sizeof(str_txt_error));
-            pcp_write(STDERR_FILENO, str_txt_tier, sizeof(str_txt_tier));
             pcp_write(STDERR_FILENO, str_txt_invalid, sizeof(str_txt_invalid));
+            pcp_write(STDERR_FILENO, str_txt_tier, sizeof(str_txt_tier));
             pcp_write(STDERR_FILENO, str_txt_end_dot, sizeof(str_txt_end_dot));
             exitcode = pcp9_exit_error;
             break;

@@ -47,7 +47,7 @@ b str9_cmp(const char* txt1, const char* txt2)
     );
 }
 
-i8 str9_stack(char* txt, i8 new_char)
+i8 str9_stack(char* txt, char new_char)
 {
     i8 old_char = txt[0];
     txt[0] = txt[1];
@@ -63,13 +63,14 @@ i8 str9_stack(char* txt, i8 new_char)
 }
 
 /** TODO: does not work, make do it run! **/
-i8 str21_stack(char* txt, i8 new_char)
+i8 str21_stack(char* txt, char new_char)
 {
     i8 old_char =  txt[0];
-    new_char = str21_stack(&txt[11], new_char);
-    new_char = str21_stack(&txt[2], new_char);
+    new_char = str9_stack(&txt[12], new_char);
+    new_char = str9_stack(&txt[3], new_char);
     txt[0] = txt[1];
-    txt[1] = new_char;
+    txt[1] = txt[2];
+    txt[2] = new_char;
     return old_char;
 }
 
@@ -100,7 +101,7 @@ b str21_palindrome(char* txt)
     );
 }
 
-u64 str_cast(char* txt, u64 value, u8 size)
+u128 str_cast(char* txt, u128 value, u8 size)
 {
     do {
         size -= 1;
@@ -111,12 +112,12 @@ u64 str_cast(char* txt, u64 value, u8 size)
     return value;
 }
 
-u64 str9_cast(char* txt, u64 value)
+u128 str9_cast(char* txt, u128 value)
 {
     return str_cast(txt, value, 9);
 }
 
-u64 str21_cast(char* txt, u64 value)
+u128 str21_cast(char* txt, u128 value)
 {
     return str_cast(txt, value, 21);
 }
