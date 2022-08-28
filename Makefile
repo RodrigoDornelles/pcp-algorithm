@@ -1,9 +1,9 @@
 TIER ?= 1
 
 ifeq ($(TIER), 1)
-OFFSETS ?= "0 1 2 3 4 5 6 7 8"
+OFFSETS ?= 0 1 2 3 4 5 6 7 8
 else ifeq ($(TIER), 2)
-OFFSETS ?= "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
+OFFSETS ?= 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
 endif
 
 all:
