@@ -57,3 +57,5 @@ bin/*
 data/*
 !bin/.gitkeep
 !data/.gitkeep
+.DS_Store
+Thumbs.db
