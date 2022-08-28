@@ -11,6 +11,7 @@ all:
 	@echo " > make clean"
 	@echo " > make all-deps"
 	@echo " > make multi-run"
+	@echo " > make multi-kill"
 	@echo " > make single-run"
 
 clean:
