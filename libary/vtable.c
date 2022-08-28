@@ -16,8 +16,9 @@ struct vtable_funcs_s {
     u8 size;
     u128 (*int_from_str)(char*);
     b (*int_cousin)(u128);
-    u128 (*str_from_int)(char*, u128);
+    b (*str_cmp)(char*, char*);
     i8 (*str_stack)(char*, i8);
+    u128 (*str_from_int)(char*, u128);
     b (*str_palindrome)(char*);
 };
 
@@ -28,16 +29,18 @@ static const struct vtable_funcs_s vtable[] = {
         .size = 9,
         .int_from_str = &math9_cast,
         .int_cousin = &math_cousin,
-        .str_from_int = &str9_cast,
+        .str_cmp = &str9_cmp,
         .str_stack = &str9_stack,
+        .str_from_int = &str9_cast,
         .str_palindrome = &str9_palindrome
     },
     {
         .size = 21,
         .int_from_str = &math21_cast,
         .int_cousin = &math_cousin,
-        .str_from_int = &str21_cast,
+        .str_cmp = &str21_cmp,
         .str_stack = &str21_stack,
+        .str_from_int = &str21_cast,
         .str_palindrome = &str21_palindrome
     }
 };

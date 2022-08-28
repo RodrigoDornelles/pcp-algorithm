@@ -32,7 +32,7 @@ b str2_cmp(const char* txt1, const char* txt2)
     );
 }
 
-b str9_cmp(const char* txt1, const char* txt2)
+b str9_cmp(char* txt1, char* txt2)
 {
     return (
         (txt1[0] == txt2[0]) &&
@@ -44,6 +44,17 @@ b str9_cmp(const char* txt1, const char* txt2)
         (txt1[6] == txt2[6]) &&
         (txt1[7] == txt2[7]) &&
         (txt1[8] == txt2[8])
+    );
+}
+
+b str21_cmp(char* txt1, char* txt2)
+{
+    return (
+        str9_cmp(&txt1[12], &txt2[12]) &&
+        str9_cmp(&txt1[3], &txt2[3]) &&
+        (txt1[2] == txt2[2]) &&
+        (txt1[1] == txt2[1]) &&
+        (txt1[0] == txt2[0])
     );
 }
 
