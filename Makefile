@@ -1,8 +1,10 @@
-<<<<<<< HEAD
-TIER := 1
-=======
 TIER ?= 1
->>>>>>> 9481a16bf2fdbe6064d098308320702daa71d013
+
+ifeq ($(TIER), 1)
+OFFSETS ?= "0 1 2 3 4 5 6 7 8"
+else ifeq ($(TIER), 2)
+OFFSETS ?= "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
+endif
 
 all:
 	@echo "usage:"
@@ -21,19 +23,19 @@ bin/%:
 	${CC} ${CC_FLAGS} tools/$*.c -o bin/$*
 
 single-run: build
-	for i in 1 2 3 4 5 6 7 8; do \
+	for i in ${OFFSETS}; do \
 		./bin/pcp_slicer -T${TIER} -O$$i -H -idata/sausage.txt |\
-		./bin/pcp_cousin -T${TIER} |\
-		./bin/pcp_palindrome -T${TIER} -f |\
+		./bin/pcp_palindrome -T${TIER} |\
+		./bin/pcp_cousin -T${TIER} -f |\
 		(./bin/pcp_pos -T${TIER} -S -idata/sausage.txt||true);\
 	done
 
-multi-run: all-deps
-	for i in 1 2 3 4 5 6 7 8; do \
+multi-run: build
+	for i in ${OFFSETS}; do \
 		(./bin/pcp_slicer -T${TIER} -O$$i -H -idata/sausage.txt |\
-		./bin/pcp_cousin -T${TIER} |\
-		./bin/pcp_palindrome -T${TIER} -f\
-		&& echo & true);\
+		./bin/pcp_palindrome -T${TIER} |\
+		./bin/pcp_cousin -T${TIER} -f;\
+		echo) & true ;\
 	done
 
 multi-kill:
