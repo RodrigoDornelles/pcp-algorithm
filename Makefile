@@ -26,8 +26,7 @@ single-run: build
 	for i in ${OFFSETS}; do \
 		./bin/pcp_slicer -T${TIER} -O$$i -H -idata/sausage.txt |\
 		./bin/pcp_palindrome -T${TIER} |\
-		./bin/pcp_cousin -T${TIER} -f |\
-		(./bin/pcp_pos -T${TIER} -S -idata/sausage.txt||true);\
+		./bin/pcp_cousin -T${TIER} -f ;\
 	done
 
 multi-run: build
