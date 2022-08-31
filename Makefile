@@ -6,6 +6,8 @@ else ifeq ($(TIER), 2)
 OFFSETS ?= 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
 endif
 
+.PHONY: tests
+
 all:
 	@echo "usage:"
 	@echo " > make clean"
@@ -15,7 +17,7 @@ all:
 	@echo " > make single-run"
 
 clean:
-	rm -f bin/* *.o
+	rm -f bin/* *.o test_* *.out
 
 build: bin/pcp_slicer bin/pcp_cousin bin/pcp_palindrome bin/pcp_pos
 	@echo all done!
@@ -40,3 +42,9 @@ multi-run: build
 
 multi-kill:
 	killall -q pcp_slicer pcp_cousin pcp_palindrome pcp_pos; true
+
+tests:
+	${CC} tests/tests_str.c -o test_str
+	${CC} tests/tests_opt.c -o test_opt
+	${CC} tests/tests_math.c -o test_math
+	./test_math && ./test_opt && ./test_str

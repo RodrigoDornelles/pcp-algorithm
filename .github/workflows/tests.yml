@@ -1,0 +1,14 @@
+on:
+  push:
+    branches: [master]
+    pull_request: [master]
+
+jobs:
+  full: 
+    runs-on: ubuntu-latest      
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - name: Run tests...
+        run: time make tests

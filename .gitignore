@@ -55,6 +55,7 @@ dkms.conf
 *.log
 bin/*
 data/*
+test_*
 !bin/.gitkeep
 !data/.gitkeep
 .DS_Store

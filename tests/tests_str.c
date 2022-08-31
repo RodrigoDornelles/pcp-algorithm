@@ -45,4 +45,5 @@ int main()
         str9_cast(txt, big_var);
         assert(str9_cmp("999999999999999999999", txt));
     }
+    return 0;
 }
