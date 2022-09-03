@@ -1,8 +1,10 @@
 #include <assert.h>
+#include "../libary/opt.c"
 #include "../libary/math.c"
 
-int main()
+int main(int argc, char** argv)
 {
+    b fast = has_opt_get(argc, argv, 'f');
     {
         assert(math2_cast("9") == 9);
         assert(math2_cast("09") == 9);
@@ -31,8 +33,8 @@ int main()
         u128 big_var2 = 999999999999999999;
         big_var1 = (big_var1 * 1000) + 887;
         big_var2 = (big_var2 * 1000) + 999;
-        assert(math_cousin(big_var1));
-        assert(!math_cousin(big_var2));
+        assert(fast? true: math_cousin(big_var1));
+        assert(fast? true: !math_cousin(big_var2));
     }
 
     return 0;
