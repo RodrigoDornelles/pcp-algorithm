@@ -1,0 +1,27 @@
+name: Publish
+
+on:
+  push:
+    tags: 
+      - "*.*.*"
+
+jobs:
+  assets:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v3
+          
+      - name: Building Project
+        run: make build
+
+      - name: Packaging project
+        run: tar cvzf pcp-tools-${{ matrix.os }}.tar.gz ./bin/*
+                  
+      - name: upload binaries
+        uses: softprops/action-gh-release@v1
+        with:
+          files: "*.tar.gz"

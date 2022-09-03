@@ -1,26 +1,8 @@
 #ifndef FILES_LIB_PCP_H
 #define FILES_LIB_PCP_H
 
-#if defined(_USE_STD)
-#include <unistd.h>
-#include <fcntl.h>
+#include "types.c"
 
-u32 pcp_open(any_const pointer, u32 flags)
-{
-    return open(pointer, flags);
-}
-
-u32 pcp_write(u8 fileno, any_const pointer, u32 size)
-{
-    return write(fileno, pointer, size);
-}
-
-u32 pcp_read(u8 fileno, any_const pointer, u32 size)
-{
-    return read(fileno, pointer, size);
-}
-
-#else 
 const u32 STDIN_FILENO = 0u;
 const u32 STDOUT_FILENO = 1u;
 const u32 STDERR_FILENO = 2u;
@@ -115,5 +97,5 @@ u32 pcp_read(u8 fileno, any_const pointer, u32 size)
 #else
 #error the system is not supported.
 #endif
-#endif
+
 #endif

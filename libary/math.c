@@ -69,9 +69,6 @@ u128 math21_cast(char* txt)
     return res;
 }
 
-#include <stdio.h>
-#include "../libary/str.c"
-
 u128 math_sqrt(u128 n)
 {
     f128 guess = 1, absguess = 1, old_guess = 0;

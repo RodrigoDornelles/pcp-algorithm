@@ -1,0 +1,19 @@
+name: Fast Tests
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  suit: 
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - name: Run tests...
+        run: time make tests TESTS_FLAGS="-f"

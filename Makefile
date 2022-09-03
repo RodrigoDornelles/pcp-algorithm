@@ -17,7 +17,7 @@ all:
 	@echo " > make single-run"
 
 clean:
-	rm -f bin/* *.o test_* *.out
+	rm -Rf bin/* *.o test_* *.out *.dSYM *.gc*
 
 build: bin/pcp_slicer bin/pcp_cousin bin/pcp_palindrome bin/pcp_pos
 	@echo all done!
@@ -44,7 +44,15 @@ multi-kill:
 	killall -q pcp_slicer pcp_cousin pcp_palindrome pcp_pos; true
 
 tests:
-	${CC} tests/tests_str.c -o test_str
-	${CC} tests/tests_opt.c -o test_opt
-	${CC} tests/tests_math.c -o test_math
-	./test_math && ./test_opt && ./test_str
+	${CC} ${CC_FLAGS} tests/tests_str.c -o test_str
+	${CC} ${CC_FLAGS} tests/tests_opt.c -o test_opt
+	${CC} ${CC_FLAGS} tests/tests_math.c -o test_math
+	./test_math ${TESTS_FLAGS} && \
+	./test_opt ${TESTS_FLAGS} && \
+	./test_str ${TESTS_FLAGS}
+
+tests-coverage:
+	make tests \
+	TESTS_FLAGS="${TESTS_FLAGS}" \
+	CC_FLAGS="${CC_FLAGS} -w -coverage -g"
+	gcov *.gcno
