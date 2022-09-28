@@ -1,5 +1,8 @@
 # c-palindrome-cousin-pi
 
+> The first challenge launched by [SigmaGeek](https://sigmageek.com/) worth the prize of **U$ 2,000** (two thousand dollars),<br/> 
+Find large palindromic prime numbers in the decimal expansion of π (PI).
+
 ## Tools 1 ##
 
 utility kit that processes data returns exact result.
