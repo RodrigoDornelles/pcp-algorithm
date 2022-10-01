@@ -18,7 +18,7 @@ Find large palindromic prime numbers in the decimal expansion of π (PI).
  * CPU Multi-threading
  * Task queue control
 
-### :package: Pesources ####
+### :package: Resources ####
 
  * Java 8
  * Assembly amd64 _(linux, macos)_
